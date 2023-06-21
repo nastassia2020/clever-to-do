@@ -1,0 +1,47 @@
+.task-list {
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+}
+
+.add-new-task {
+  margin-top: 30px;
+  color: white;
+  width: 170px;
+  height: 30px;
+  background-color: orange;
+  border: 1px solid orange;
+  border-radius: 3px;
+}
+
+.add-new-task:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.form {
+  max-width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+.form_input {
+  outline: none;
+  border: 1px solid darkgrey;
+  border-radius: 4px;
+  height: 27px;
+  margin-top: 30px;
+  margin-right: 5px;
+}
+.close-form {
+  margin-top: 30px;
+  margin-left: 5px;
+  color: white;
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+.close-form:hover {
+  cursor: pointer;
+}

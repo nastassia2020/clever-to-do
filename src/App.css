@@ -1,0 +1,13 @@
+.app {
+  height: 100vh;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.app-content {
+  /* flex: 1 1 90%; */
+  height: 90%;
+  margin: 0;
+  /* border: 10px solid red; */
+}

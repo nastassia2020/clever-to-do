@@ -1,0 +1,44 @@
+.day-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 50px;
+  margin: 0 10px;
+  height: 80px;
+}
+.calendar-day {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  background-color: white;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 5px;
+  height: 60px;
+  flex: 0 0 50px;
+  margin: 0 10px;
+  margin-bottom: 10px;
+}
+.calendar-day:first-child {
+  margin: 0;
+}
+
+.calendar-day:hover {
+  border: 1px solid orange;
+}
+
+.calendar-day-active {
+  color: black;
+  background-color: orange;
+  border: 1px solid orange;
+}
+.calendar-day-current {
+  color: white;
+  background-color: rgb(26, 25, 25);
+  border: 1px solid orange;
+}
+.day {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
