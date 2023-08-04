@@ -65,6 +65,7 @@ export const signInFetch = someData => {
               dispatch(setDataBaseKey(res.data.name));
               dispatch(clearErrorHandler());
               dispatch(firstLoadHandler(false));
+              localStorage.setItem(`token`, res.data.name);
             })
             .catch(err =>
               dispatch(authErrorHandler(err.response.data.error.message)),
@@ -127,13 +128,13 @@ export const fetchTasks = () => {
               dataBaseKey: key,
               uniqCode: item,
             };
-            localStorage.setItem(
-              `${task.name.task}`,
-              JSON.stringify({
-                description: task.name.task,
-                isDone: task.name.isDone,
-              }),
-            );
+            // localStorage.setItem(
+            //   `${task.name.task}`,
+            //   JSON.stringify({
+            //     description: task.name.task,
+            //     isDone: task.name.isDone,
+            //   }),
+            // );
             tasks.push({ ...task });
           }
         }

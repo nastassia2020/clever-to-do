@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signInFetch } from '../../store/actions/actions';
 import './Sign.css';
 
-export const Sign = () => {
+const Sign = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error, isError, isAuth, firstLoad } = useSelector(state => state.auth);
+  const { error, isError, firstLoad } = useSelector(state => state.auth);
 
   if (error) {
     console.log(error);
@@ -28,7 +28,6 @@ export const Sign = () => {
   };
 
   useEffect(() => {
-    // по умолчанию знаечние isError false
     if (isError === false && firstLoad === false) {
       navigate('/login');
     }
@@ -75,3 +74,5 @@ export const Sign = () => {
     </div>
   );
 };
+
+export default Sign;

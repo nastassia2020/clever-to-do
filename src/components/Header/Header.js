@@ -10,16 +10,15 @@ import {
 import './Header.css';
 
 const Header = () => {
-  const { isAuth } = useSelector(state => state.auth);
+  //const { isAuth } = useSelector(state => state.auth);
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const authHandler = () => {
-    // на случай если нажимаем на кнопку находясь на странице конкретной таски
-    navigate('/');
+    navigate('/sign');
     dispatch(logoutHandler());
     dispatch(clearTasksWhenLogOut());
-    // добавила переменную firstload, чтобы при разлогинивании не перекидывал useEffect компонента Sign на страницу login
     dispatch(firstLoadHandler(true));
   };
 
@@ -28,7 +27,7 @@ const Header = () => {
       <div className="header_info">
         <p> Tassker </p>
       </div>
-      {isAuth && <SlLogout className="header_exit" onClick={authHandler} />}
+      {token && <SlLogout className="header_exit" onClick={authHandler} />}
     </div>
   );
 };

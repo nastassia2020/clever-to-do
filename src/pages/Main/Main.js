@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { TaskList } from '../../components/TaskList';
-import { CalendarList } from '../../components/CalendarList';
+import TaskList from '../../components/TaskList/TaskList';
+import CalendarList from '../../components/CalendarList/CalendarList';
 import { fetchTasks } from '../../store/actions/actions';
 import './Main.css';
 

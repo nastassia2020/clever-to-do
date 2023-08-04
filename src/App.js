@@ -1,31 +1,15 @@
-import React, { useEffect, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { ErrorBoundary } from './components/ErrorBoundary';
-import { Header } from './components/Header';
-import { Main } from './pages/Main';
-import { Login } from './pages/Login';
-import { Sign } from './pages/Sign/Sign.js';
-import { PageNotFound } from './pages/PageNotFound.js';
-import { loginCheckStatusHandler } from './store/actions/actions';
-import { fetchTasks } from './store/actions/actions';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import Header from './components/Header/Header';
+import Main from './pages/Main/Main';
+import Login from './pages/Login/Login';
+import Sign from './pages/Sign/Sign';
+import ProtectedRoute from './utils/ProtectedRoute';
 
 import './App.css';
 
 function App() {
-  const { isAuth, token, isError } = useSelector(state => state.auth);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loginCheckStatusHandler());
-  }, [dispatch, isAuth]);
-
-  useEffect(() => {
-    if (isAuth) {
-      dispatch(fetchTasks());
-    }
-  });
-
   return (
     <div className="app">
       <Header />
@@ -33,21 +17,12 @@ function App() {
         <Suspense fallback={<h1> ...</h1>}>
           <div className="app-content">
             <Routes>
-              {isAuth ? (
-                <>
-                  <Route path="/" element={<Main />} />
-                  <Route path="*" element={<PageNotFound />} />
-                  <Route path="/login" element={<Navigate replace to="/" />} />
-                  <Route path="/sign" element={<Navigate replace to="/" />} />
-                </>
-              ) : (
-                <>
-                  <Route path="/sign" element={<Sign />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/" element={<Navigate replace to="/sign" />} />
-                  <Route path="*" element={<PageNotFound />} />
-                </>
-              )}
+              <Route element={<ProtectedRoute />}>
+                <Route path="/" element={<Main />} exact />
+              </Route>
+              <Route path="/login" element={<Login />} />
+              <Route path="/sign" element={<Sign />} />
+              <Route path="*" element={<Navigate to="/404" />} />
             </Routes>
           </div>
         </Suspense>

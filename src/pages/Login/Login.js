@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginFetch } from '../../store/actions/actions';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { error, isError } = useSelector(state => state.auth);
 
@@ -32,7 +34,10 @@ const Login = () => {
           onChange={changeHandler}
         />
         <button
-          onClick={() => dispatch(loginFetch(userData))}
+          onClick={() => {
+            dispatch(loginFetch(userData));
+            navigate('/');
+          }}
           type="button"
           className="auth_btn"
         >

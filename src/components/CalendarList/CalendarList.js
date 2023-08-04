@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { BsCalendarWeek } from 'react-icons/bs';
-import {
-  showCalendarHandler,
-  changeCalendarDay,
-  fetchTasks,
-} from '../../store/actions/actions';
+import { changeCalendarDay, fetchTasks } from '../../store/actions/actions';
 import { CalendarDay } from './CalendarDay';
 import './CalendarList.css';
 
@@ -81,11 +76,6 @@ const CalendarList = ({ tasks }) => {
             />
           ))}
         </div>
-        <BsCalendarWeek
-          onClick={() => {
-            dispatch(showCalendarHandler());
-          }}
-        />
         {showCalendar && (
           <input
             type="date"
