@@ -50,14 +50,12 @@ const TaskList = ({ tasks }) => {
           item={item}
           description={item.description}
           isDone={item.isDone}
-          dataBaseKey={item.dataBaseKey}
           onCheckBoxClick={item => {
             dispatch(taskIsDonePatch(item, choosenDate));
           }}
           isEdit={editIndex === index}
           changeTask={() => toggleEditHandler(index)}
           typeTaskHandler={onChangeHandler(setTaskChanged)}
-          editedValue={taskChanged}
           saveChangedTask={item => {
             dispatch(
               changeTaskPatch({

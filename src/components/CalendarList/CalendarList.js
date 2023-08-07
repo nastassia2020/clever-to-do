@@ -33,60 +33,48 @@ const CalendarList = ({ tasks }) => {
     return tasks.some(task => task.dataBaseKey === date);
   };
 
-  const renderIndicator = date => {
+  const getIndicator = date => {
     if (dateHasTasks(date)) {
       const tasksOfTheDay = tasks.filter(task => task.dataBaseKey === date);
       if (tasksOfTheDay.every(item => item.isDone === true)) {
-        return (
-          <div className="show-dots">
-            <div className="second-dot"> </div>
-          </div>
-        );
+        return ['second-dot', null];
       } else if (tasksOfTheDay.every(item => item.isDone === false)) {
-        return (
-          <div className="show-dots">
-            <div className="dot"> </div>
-          </div>
-        );
+        return ['dot', null];
       } else {
-        return (
-          <div className="show-dots">
-            <div className="dot"> </div>
-            <div className="second-dot"> </div>
-          </div>
-        );
+        return ['dot', 'second-dot'];
       }
     }
-    return null;
+    return [null, null];
   };
 
   return (
     <div>
       <div className="calendar">
         <div className="calendar-item">
-          {dateArr.map((item, index) => (
-            <CalendarDay
-              item={item}
-              key={item}
-              changeDayHandler={changeDayHandler}
-              currentDay={item.toISOString().slice(0, 10) === date}
-              isActive={hasTasksIndex === index}
-              setIsActive={() => toggleEditHandler(index)}
-              hasTasks={() => renderIndicator(item.toISOString().slice(0, 10))}
-            />
-          ))}
+          {dateArr.map((item, index) => {
+            return (
+              <CalendarDay
+                item={item}
+                key={item}
+                changeDayHandler={changeDayHandler}
+                currentDay={item.toISOString().slice(0, 10) === date}
+                isActive={hasTasksIndex === index}
+                setIsActive={() => toggleEditHandler(index)}
+                hasTasks={() => {
+                  const [class1, class2] = getIndicator(
+                    item.toISOString().slice(0, 10),
+                  );
+                  return (
+                    <div className="show-dots">
+                      {class1 && <div className={class1}></div>}
+                      {class2 && <div className={class2}></div>}
+                    </div>
+                  );
+                }}
+              />
+            );
+          })}
         </div>
-        {showCalendar && (
-          <input
-            type="date"
-            defaultValue={date}
-            min={date}
-            onChange={event => {
-              dispatch(changeCalendarDay(event.target.value));
-              dispatch(fetchTasks(event.target.value));
-            }}
-          />
-        )}
       </div>
     </div>
   );

@@ -13,11 +13,9 @@ const Task = ({
   changeTask,
   saveChangedTask,
   deleteTask,
-  editedValue,
   showModal,
   handleCancelDeleting,
   handleConfirmDeleting,
-  taskWasChose,
 }) => {
   return (
     <div className="task-div">
@@ -34,11 +32,7 @@ const Task = ({
       </div>
       {isEdit && (
         <form className="changeForm">
-          <input
-            className="changeForm_input"
-            value={editedValue}
-            onChange={typeTaskHandler}
-          />
+          <input className="changeForm_input" onChange={typeTaskHandler} />
           <button
             type="button"
             className="change-task-button"
