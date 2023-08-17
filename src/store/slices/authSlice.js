@@ -15,6 +15,7 @@ const authSlice = createSlice({
   },
   reducers: {
     loginHandler: (state, action) => {
+      localStorage.setItem('Auth', 'user registered');
       state.isAuth = true;
       state.user = action.payload;
     },
@@ -30,7 +31,7 @@ const authSlice = createSlice({
     logoutHandler: state => {
       state.user.login = '';
       state.user.email = '';
-      localStorage.removeItem('token');
+      //localStorage.removeItem('token');
       state.isAuth = false;
     },
     authErrorHandler: (state, action) => {

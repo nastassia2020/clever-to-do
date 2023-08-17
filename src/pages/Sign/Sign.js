@@ -29,7 +29,7 @@ const Sign = () => {
 
   useEffect(() => {
     if (isError === false && firstLoad === false) {
-      navigate('/login');
+      navigate('/');
     }
   }, [isError, firstLoad, navigate]);
 

@@ -65,6 +65,7 @@ export const signInFetch = someData => {
               dispatch(setDataBaseKey(res.data.name));
               dispatch(clearErrorHandler());
               dispatch(firstLoadHandler(false));
+              dispatch(loginHandler(res.data));
               localStorage.setItem(`token`, res.data.name);
             })
             .catch(err =>
